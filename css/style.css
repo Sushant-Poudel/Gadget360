@@ -942,6 +942,14 @@ img { max-width: 100%; display: block; }
 .contact-card a { color: var(--primary); }
 .contact-card a:hover { text-decoration: underline; }
 
+.refund-notice {
+  border-color: rgba(251,146,60,0.25);
+  background: rgba(251,146,60,0.05);
+}
+.refund-notice .contact-icon { color: #fb923c; }
+.refund-notice h4 { color: #fb923c; }
+.refund-notice p strong { color: #fb923c; }
+
 .contact-form-wrap {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1028,7 +1036,21 @@ img { max-width: 100%; display: block; }
   margin-bottom: 20px;
   max-width: 280px;
 }
-.footer-social { display: flex; gap: 12px; }
+.footer-contact-row {
+  margin-bottom: 16px;
+}
+.footer-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  transition: var(--transition);
+}
+.footer-phone:hover { color: #25D366; }
+
+.footer-social { display: flex; gap: 10px; flex-wrap: wrap; }
 .social-link {
   display: flex;
   align-items: center;

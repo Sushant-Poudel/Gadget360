@@ -64,7 +64,7 @@ function renderProducts() {
     const badge = p.badge ? `<div class="product-badge ${p.badge}">${p.badge}</div>` : '';
     const oldPrice = p.oldPrice ? `<span class="price-old">${fmtNPR(p.oldPrice)}</span>` : '';
     const orderMsg = encodeURIComponent(`Hi! I'd like to order: ${p.name} (${fmtNPR(p.price)})`);
-    const waNum = (dbGet('settings', {})?.whatsapp || '+9779800000000').replace(/\D/g, '');
+    const waNum = (dbGet('settings', {})?.whatsapp || '+9779861913669').replace(/\D/g, '');
 
     return `
       <div class="product-card">
@@ -247,7 +247,7 @@ function setupWhatsapp() {
   const fab = document.getElementById('whatsappFab');
   if (!fab) return;
   const s = dbGet('settings', {});
-  const num = (s.whatsapp || '9779800000000').replace(/\D/g, '');
+  const num = (s.whatsapp || '9779861913669').replace(/\D/g, '');
   fab.href = `https://wa.me/${num}?text=Hi%20Gadgets360.np%2C%20I%27d%20like%20to%20enquire%20about%20a%20product.`;
 }
 
