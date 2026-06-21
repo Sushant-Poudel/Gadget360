@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — Gadgets360.np</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="login-body">
+  <div class="login-bg-grid"></div>
+  <div class="login-orb"></div>
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-logo">
+        <span class="logo-g">G</span>adgets<span class="logo-360">360</span><span class="logo-np">.np</span>
+      </div>
+      <p class="login-subtitle">Admin Dashboard</p>
+
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="admin" autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+            <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">
+              <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="login-error" id="loginError" hidden>
+          Incorrect username or password. Try again.
+        </div>
+        <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
+        <p class="login-hint">Default: admin / gadgets360</p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Redirect if already logged in
+    if (sessionStorage.getItem('g360_admin') === 'true') {
+      window.location.href = 'dashboard.html';
+    }
+
+    const CREDS = { username: 'admin', password: 'gadgets360' };
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value;
+      const err = document.getElementById('loginError');
+
+      if (u === CREDS.username && p === CREDS.password) {
+        sessionStorage.setItem('g360_admin', 'true');
+        window.location.href = 'dashboard.html';
+      } else {
+        err.hidden = false;
+        document.getElementById('loginBtn').classList.add('shake');
+        setTimeout(() => document.getElementById('loginBtn').classList.remove('shake'), 600);
+      }
+    });
+
+    document.getElementById('pwToggle').addEventListener('click', () => {
+      const pw = document.getElementById('password');
+      const icon = document.getElementById('eyeIcon');
+      if (pw.type === 'password') {
+        pw.type = 'text';
+        icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+      } else {
+        pw.type = 'password';
+        icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+      }
+    });
+  </script>
+</body>
+</html>
